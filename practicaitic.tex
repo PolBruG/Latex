@@ -1,0 +1,159 @@
+\documentclass[informe]{practicaitic}
+\usepackage{lst-vhdl, lst-shell}
+
+
+\title{Plantilla informe pràctiques}           % Títol pràctica
+\assignatura{Sistemes Digitals}                % Assignatura
+\numpract{1}                                   % Número pràctica
+\autor{Albert Babí \and Sebastià Vila}         % Autors de l'informe
+
+
+
+\begin{document}
+
+\section{Insta\l.lació LaTeX}
+
+A Ubuntu/Debian, cal insta\l.lar els següents paquets:
+
+\begin{itemize}
+\item texlive
+\item texlive-generic-extra
+\item texlive-lang-spanish
+\item tex-gyre
+\item auctex
+\item biblatex
+\end{itemize}
+
+Per a treballar amb aquesta plantilla i poder fer servir els logos de
+la \texttt{UPC} i grau \texttt{iTIC}. Baixeu-vos de l'OCW el tarfile
+\texttt{latexbits-X.X.tar} i feu:
+
+\begin{shell}
+$ tar xf latexbits-1.0.tar
+$ cd LaTeXbits
+$ make
+\end{shell}
+
+Això us instal·larà un conjunt de paquets locals de \LaTeX{} que
+inclouen l'estil per presentar informes de pràctiques.
+
+Una vegada finalitzada l'insta\l.lació d'aquests paquets podeu usar
+aquesta classe de la mateixa manera que usarieu les classes
+estàndards de documents.
+
+
+\section{Introducció a LaTeX}
+
+Aquesta és una plantilla per a escriure informes acadèmics amb
+\LaTeX. El seu funcionament es basa en macros. A continuació es
+presenten algunes exemples.
+
+\subsection{Estructura dels documents}
+
+Un document escrit amb \LaTeX es pot dividir en capítols, seccions i
+subseccions. Per exemple, un informe de pràctiques es podria
+estructurar de la següent manera:
+
+\begin{verbatim}
+\section{Introducció}
+\subsection{Descripció de la pràctica}
+\subsection{Objectius}
+\section{Estudi previ}
+\end{verbatim}
+
+Les seccions i subseccions apareixen automàticament a l'índex.
+
+
+\subsection{Emfatitzat}
+
+Podem emhatitzar text fent \emph{text emfatitzat}.
+
+
+\subsection{Llistes i enumeracions}
+
+Es poden crear llistes, que continguin diferents nivells, amb la macro
+\texttt{itemize}.
+
+\begin{itemize}
+\item Podem crear llistes
+\item Amb múltiples elements
+\item O que continguin subllistes:
+  \begin{itemize}
+  \item Amb més elements
+  \item Com aquests
+  \end{itemize}
+\item \dots
+\end{itemize}
+
+El mateix passa per a les enumeracions, utilitzant la macro
+\texttt{enumerate}:
+\begin{enumerate}
+\item Primer element
+\item Element 2
+\item Element 3
+  \begin{enumerate}
+  \item Primer sub-element
+  \item Segon sub-element
+  \end{enumerate}
+\item \dots
+\end{enumerate}
+
+
+\subsection{Inserció de codi}
+
+Exemple d'introducció de codi \texttt{VHDL}.
+
+\begin{vhdl}
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity shifter is
+  port(x        : in std_logic_vector(3 downto 0);
+       y        : out std_logic_vector(3 downto 0);
+       ctrl     : in std_logic_vector(1 downto 0));
+end shifter;
+
+architecture arch of shifter is
+begin
+  with ctrl select
+    y <= x                    when "00",
+         x(2 downto 0) & '0'  when "01",
+         '0' & x(3 downto 1)  when "10",
+         x(0) & x(3 downto 1) when "11",
+         "----"               when others;
+end arch;
+\end{vhdl}
+
+
+
+
+
+\subsection{Taules}
+
+Per a treballar amb taules s'utilitza la macro \texttt{tabular}.
+
+\begin{center}
+  \begin{tabular}{|c|cc|}
+    \hline
+    Primera columna & Segona columna & Tercera columna \\ \hline\hline
+    1 & 2 & 3 \\ \hline
+    4 & 5 & 6 \\ \hline
+  \end{tabular}
+\end{center}
+
+
+
+
+\subsection{Imatges}
+
+Podem incloure imatges amb \texttt{includegraphics}. Pel tipus de
+documents que són els informes de pràctiques, és preferible incloure
+les figures entremig del text de forma fixa i sense peu de figura.
+
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{esquema.png}
+\end{center}
+
+
+
+\end{document}

@@ -1,0 +1,39 @@
+\ProvidesPackage{ccbyncsa}[2022/5/30 Metadades dels documents]
+\RequirePackage{hyperxmp}
+\RequirePackage{hyperref}
+
+\hypersetup{%
+  colorlinks=false,
+  pdfborder={0 0 0}
+}
+
+%%
+%% Metadades del document
+%% \metadades{autors}{titol}{url}
+\newcommand{\metadades}[3]{
+  \hypersetup{%
+    pdftitle={#2},
+    baseurl={#3},
+    pdfauthor={#1},
+    pdfcopyright={%
+      Copyright (C) \year, #1.
+      Aquesta obra està subjecta a una llicència
+      Attribution-NonCommercial-ShareAlike 3.0 Spain
+      de Creative Commons.
+    },
+    pdflicenseurl={http://creativecommons.org/licenses/by-nc-sa/3.0/es},
+    pdflang={ca}
+  }
+}
+
+%%
+%% genera el text de la llicència
+%%
+\newcommand{\ccbyncsa}{%
+    Aquesta obra està subjecta a una llicència
+    Attribution-NonCommercial-ShareAlike 3.0 Spain de Creative
+    Commons. Per veure'n una còpia, visiteu
+    \url{http://creativecommons.org/licenses/by-nc-sa/3.0/es} o envieu una
+    carta a Creative Commons, 171 Second Street, Suite 300, San
+    Francisco, California 94105, USA.
+}

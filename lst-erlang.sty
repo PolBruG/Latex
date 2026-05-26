@@ -1,0 +1,27 @@
+\ProvidesPackage{lst-erlang}
+\RequirePackage{lst-common}
+\RequirePackage{xcolor}
+
+
+%% package options
+
+\DeclareOption{inlinebar}{%
+  \lstMakeShortInline[style=lst-common,language=erlang]{|}
+}
+
+\def\erlang@background{\color{white}}
+\DeclareOption{background}{%
+  \def\erlang@background{\color{yellow!8!white}}
+}
+
+\lstnewenvironment{erlang}
+     {\lstset{style=lst-common,
+              language=erlang,
+              backgroundcolor=\erlang@background}}
+     {}
+
+\newcommand{\inputerlang}[1]{
+  \lstinputlisting[language=erlang,style=lst-common,backgroundcolor=erlang@background]{#1}
+}
+
+\ProcessOptions\relax

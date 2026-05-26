@@ -1,0 +1,27 @@
+\ProvidesPackage{lst-make}
+\RequirePackage{lst-common}
+\RequirePackage{xcolor}
+
+
+%% package options
+
+\DeclareOption{inlinebar}{%
+  \lstMakeShortInline[style=lst-common,language=make]{|}
+}
+
+\def\make@background{\color{white}}
+\DeclareOption{background}{%
+  \def\make@background{\color{blue!8!white}}
+}
+
+\lstnewenvironment{make}
+     {\lstset{style=lst-common,
+              language=make,
+              backgroundcolor=\make@background}}
+     {}
+
+\newcommand{\inputmake}[1]{
+  \lstinputlisting[style=lst-common,language=make,backgroundcolor=make@background]{#1}
+}
+
+\ProcessOptions\relax

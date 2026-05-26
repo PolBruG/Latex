@@ -1,0 +1,27 @@
+\ProvidesPackage{lst-sql}
+\RequirePackage{lst-common}
+\RequirePackage{xcolor}
+
+
+%% package options
+
+\DeclareOption{inlinebar}{%
+  \lstMakeShortInline[style=lst-common,language=sql]{|}
+}
+
+\def\sql@background{\color{white}}
+\DeclareOption{background}{%
+  \def\sql@background{\color{brown!8!white}}
+}
+
+\lstnewenvironment{sql}
+     {\lstset{style=lst-common,
+              language=sql,
+              backgroundcolor=\sql@background}}
+     {}
+
+\newcommand{\inputsql}[1]{
+  \lstinputlisting[language=sql,style=lst-common,backgroundcolor=sql@background]{#1}
+}
+
+\ProcessOptions\relax
